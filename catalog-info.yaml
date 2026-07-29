@@ -2,7 +2,7 @@ apiVersion: backstage.io/v1alpha1
 kind: System
 metadata:
   name: spring-demos1
-  description: System for Spring Boot demo
+  description: System for spring-app1 Spring Boot demo
 spec:
   owner: group:default/devteam1
 ---
@@ -16,10 +16,13 @@ metadata:
     backstage.io/source-location: url:https://github.com/dl-rhdh-org/spring-app1
     backstage.io/kubernetes-id: spring-app1
     backstage.io/kubernetes-namespace: spring-demos1
+    # Image Registry (Quay) tab — must match a Quay repo the plugin can read
     quay.io/repository-slug: openshifttest/hello-openshift
     argocd/app-name: spring-app1
     argocd/app-namespace: openshift-gitops
     argocd/instance-name: main
+    backstage.io/techdocs-ref: dir:.
+    servicenow.com/entity-id: spring-app1
   tags:
     - spring-boot
     - java
@@ -33,6 +36,19 @@ metadata:
     - url: https://github.com/dl-rhdh-org/spring-app1/actions
       title: GitHub Actions
       icon: github
+    - url: https://openshift-gitops-server-openshift-gitops.apps.cluster-4z99r.dyn.redhatworkshops.io/applications/spring-app1
+      title: Argo CD
+      icon: dashboard
+    - url: https://spring-app1-spring-demos1.apps.cluster-4z99r.dyn.redhatworkshops.io
+      title: OpenShift Route
+      icon: web
+      type: website
+    - url: https://console-openshift-console.apps.cluster-4z99r.dyn.redhatworkshops.io/k8s/cluster/projects/spring-demos1
+      title: OpenShift Project
+      icon: catalog
+    - url: https://quay.io/repository/openshifttest/hello-openshift
+      title: Demo image (Quay)
+      icon: catalog
 spec:
   type: service
   lifecycle: experimental

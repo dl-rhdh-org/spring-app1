@@ -1,0 +1,8 @@
+site_name: spring-app1
+site_description: Spring Boot backend demo docs
+docs_dir: docs
+plugins:
+  - techdocs-core
+nav:
+  - Overview: index.md
+  - CI and CD: cicd.md
