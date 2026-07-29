@@ -1,0 +1,31 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: spring-app1
+  description: Spring Boot backend demo (build + deploy)
+  annotations:
+    github.com/project-slug: dl-rhdh-org/spring-app1
+    backstage.io/source-location: url:https://github.com/dl-rhdh-org/spring-app1
+    backstage.io/kubernetes-id: spring-app1
+    backstage.io/kubernetes-namespace: spring-demos1
+    argocd/app-name: spring-app1
+    argocd/app-namespace: openshift-gitops
+    argocd/instance-name: main
+  tags:
+    - spring-boot
+    - java
+    - maven
+    - github-actions
+    - demo
+  links:
+    - url: https://github.com/dl-rhdh-org/spring-app1
+      title: GitHub Repository
+      icon: github
+    - url: https://github.com/dl-rhdh-org/spring-app1/actions
+      title: GitHub Actions
+      icon: github
+spec:
+  type: service
+  lifecycle: experimental
+  owner: group:default/devteam1
+  system: spring-demos1

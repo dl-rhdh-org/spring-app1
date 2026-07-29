@@ -1,0 +1,61 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: spring-demos1
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-app1
+  namespace: spring-demos1
+  labels:
+    app: spring-app1
+    backstage.io/kubernetes-id: spring-app1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: spring-app1
+  template:
+    metadata:
+      labels:
+        app: spring-app1
+        backstage.io/kubernetes-id: spring-app1
+    spec:
+      containers:
+        - name: app
+          # Demo image — replace with Quay-built image once CI push is enabled
+          image: quay.io/openshifttest/hello-openshift:latest
+          ports:
+            - containerPort: 8080
+              name: http
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: spring-app1
+  namespace: spring-demos1
+  labels:
+    app: spring-app1
+    backstage.io/kubernetes-id: spring-app1
+spec:
+  selector:
+    app: spring-app1
+  ports:
+    - port: 8080
+      targetPort: 8080
+      name: http
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: spring-app1
+  namespace: spring-demos1
+spec:
+  to:
+    kind: Service
+    name: spring-app1
+  port:
+    targetPort: http
+  tls:
+    termination: edge
