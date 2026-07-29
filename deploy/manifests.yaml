@@ -3,6 +3,22 @@ kind: Namespace
 metadata:
   name: spring-demos1
 ---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: argocd-application-controller-admin
+  namespace: spring-demos1
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: admin
+subjects:
+  - kind: ServiceAccount
+    name: openshift-gitops-argocd-application-controller
+    namespace: openshift-gitops
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -24,7 +40,6 @@ spec:
     spec:
       containers:
         - name: app
-          # Demo image — replace with Quay-built image once CI push is enabled
           image: quay.io/openshifttest/hello-openshift:latest
           ports:
             - containerPort: 8080

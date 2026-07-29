@@ -1,4 +1,12 @@
 apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: spring-demos1
+  description: System for Spring Boot demo
+spec:
+  owner: group:default/devteam1
+---
+apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: spring-app1

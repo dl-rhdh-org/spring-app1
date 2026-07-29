@@ -14,5 +14,6 @@ jobs:
           distribution: temurin
           java-version: '17'
           cache: maven
+      # Use Maven from setup-java — skeleton mvnw jar is incomplete/corrupt
       - name: Build and test
-        run: ./mvnw -B -DskipTests=false test package
+        run: mvn -B -DskipTests=false test package
