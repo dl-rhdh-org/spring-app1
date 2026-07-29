@@ -16,6 +16,7 @@ metadata:
     backstage.io/source-location: url:https://github.com/dl-rhdh-org/spring-app1
     backstage.io/kubernetes-id: spring-app1
     backstage.io/kubernetes-namespace: spring-demos1
+    quay.io/repository-slug: openshifttest/hello-openshift
     argocd/app-name: spring-app1
     argocd/app-namespace: openshift-gitops
     argocd/instance-name: main

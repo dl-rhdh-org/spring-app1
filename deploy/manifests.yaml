@@ -22,6 +22,8 @@ metadata:
   namespace: spring-demos1
   labels:
     app: spring-app1
+    app.kubernetes.io/part-of: spring-app1
+    app.openshift.io/runtime: spring-boot
     backstage.io/kubernetes-id: spring-app1
 spec:
   replicas: 1
@@ -32,6 +34,8 @@ spec:
     metadata:
       labels:
         app: spring-app1
+        app.kubernetes.io/part-of: spring-app1
+        app.openshift.io/runtime: spring-boot
         backstage.io/kubernetes-id: spring-app1
     spec:
       containers:
@@ -64,6 +68,9 @@ kind: Route
 metadata:
   name: spring-app1
   namespace: spring-demos1
+  labels:
+    app: spring-app1
+    backstage.io/kubernetes-id: spring-app1
 spec:
   to:
     kind: Service
